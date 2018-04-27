@@ -131,13 +131,23 @@ class DQN:
         next_target_update = target_interval
         next_train_step = train_interval
         start_time = time.time()
+
+        flag = True
+
         while steps_taken < num_steps:
             if timeout is not None and time.time() - start_time > timeout:
                 return
             transitions = player.play()
             for trans in transitions:
                 if trans['is_last']:
+
+                    if steps_taken > 100000 and flag == True: # first time over 100000
+                        flag = False
+                        if trans['total_reward'] < 1500.00
+                            return
+
                     handle_ep(trans['episode_step'] + 1, trans['total_reward'])
+                    # print('episode_step: ', trans['episode_step'], 'total_reward: ', trans['total_reward'])
                 replay_buffer.add_sample(trans)
                 steps_taken += 1
                 for sched in tf_schedules:
