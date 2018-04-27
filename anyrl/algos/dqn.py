@@ -143,7 +143,7 @@ class DQN:
 
                     if steps_taken > 100000 and flag == True: # first time over 100000
                         flag = False
-                        if trans['total_reward'] < 1500.00
+                        if trans['total_reward'] < 1500
                             return
 
                     handle_ep(trans['episode_step'] + 1, trans['total_reward'])
